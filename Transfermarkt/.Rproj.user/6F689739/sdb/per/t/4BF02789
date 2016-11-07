@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1478511523814.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4BF02789",
+    "lastKnownWriteTime" : 7308604914264011873,
+    "last_content_update" : 1478511523814,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "8gwalutx4m",
+        "caption" : "Player_Data",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Player_Data&cache_key=8gwalutx4m",
+        "displayedObservations" : 742,
+        "environment" : "",
+        "object" : "Player_Data",
+        "totalObservations" : 742,
+        "variables" : 3
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

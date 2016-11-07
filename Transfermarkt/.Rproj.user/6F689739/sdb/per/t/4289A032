@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#Based on https://sportsdatachallenge.wordpress.com/\n\nlibrary(rvest)\n\nURL <- \"http://www.transfermarkt.com/premier-league/startseite/wettbewerb/GB1\"\n\nScraped_URL <- read_html(URL)\n\nTeam_URLs <- Scraped_URL %>% \n  html_nodes(\".hide-for-pad .vereinprofil_tooltip\") %>% \n  html_attr(\"href\") %>% \n  as.character()\n\n\nTeam_URLs <- paste0(\"http://www.transfermarkt.com\", Team_URLs)\n                    \n                    \nPlayer_Data <- data.frame(Player_Name = character(),\n                          Player_URL = character(), \n                          Player_Team = character(),\n                          Market_Value = character(),\n                          stringsAsFactors = FALSE)\n               \nfor (i in Team_URLs){\n  \n  Team_URLs <- read_html(i)\n  \n  cat(\"Processing...\", i, \"\\n\")\n                 \n  Player_Name <- Team_URLs %>% \n    html_nodes(\"#yw1 .spielprofil_tooltip\") %>% \n    html_text() %>% \n    as.character()\n                 \n  Player_URL <- Team_URLs %>% \n    html_nodes(\"#yw1 .spielprofil_tooltip\") %>% \n    html_attr(\"href\") %>% \n    as.character()\n  \n  Player_Team <- Team_URLs %>%\n    html_nodes(\".dataName\") %>%\n    html_text() %>%\n    as.character()\n\n  Market_Value <- Team_URLs %>%\n    html_nodes(\".dataMarktwert a\") %>%\n    html_text() %>%\n    as.character()\n\n  Temp_Dataframe <- data.frame(Player_Name, Player_URL, Player_Team, Market_Value)\n  Player_Data <- rbind(Player_Data, Temp_Dataframe)\n  cat(\"Processed...\", i, \"\\n\")\n  Sys.sleep(0.2)\n}\n               \n# no.of.rows <- nrow(Player_Data)\n# odd_indexes<-seq(1,no.of.rows,2)\n# Player_Data <- data.frame(Player_Data[odd_indexes,])\n#                \n# Player_Data$Player_URL <- paste0(\"http://www.transfermarkt.com\",Player_Data$Player_URL)\n# \n# \n# <- data.frame(Player=character(),MarketValue=character())\n#                                         \n#                                         for (i in Catcher1$P_URL) {\n#                                           \n#                                           WS2 <- read_html(i)\n#                                           MarketValue <- WS2 %>% html_nodes(\".dataMarktwert a\") %>% html_text() %>% as.character()\n#                                           Player <- WS2 %>% html_nodes(\"h1\") %>% html_text() %>% as.character()\n#                                           if (length(MarketValue) > 0) {\n#                                             \n#                                             temp2 <- data.frame(Player,MarketValue)\n#                                             Catcher2 <- rbind(Catcher2,temp2)\n#                                             \n#                                           } else {}\n#                                           \n#                                           cat(\"*\")\n#                                           \n#                                         }",
+    "created" : 1478509235719.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3017893395",
+    "id" : "4289A032",
+    "lastKnownWriteTime" : 1478511711,
+    "last_content_update" : 1478511711356,
+    "path" : "C:/Users/joet/Desktop/[CURRENT]/GitHub/Football-Webscrapers/Transfermarkt/Transfermarkt.R",
+    "project_path" : "Transfermarkt.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
